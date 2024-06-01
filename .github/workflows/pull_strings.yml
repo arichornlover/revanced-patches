@@ -16,7 +16,7 @@ jobs:
                   fetch-depth: 0
 
             - name: Pull strings
-              uses: crowdin/github-action@v1
+              uses: crowdin/github-action@v2
               with:
                   config: crowdin.yml
                   download_translations: true
