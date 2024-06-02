@@ -4,8 +4,7 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import android.content.res.Resources
-import android.graphics.Color
+
 
 @Patch(
     name = "Dimmed UI",
@@ -54,18 +53,17 @@ import android.graphics.Color
         )
     ]
 )
-object DimmedUIPatch : BytecodePatch() {
+object DimmedUIBytecodePatch : BytecodePatch() {
     override fun execute(context: BytecodeContext) {
-        val isDarkMode = context.getThemeId() == android.R.style.Theme_DeviceDefault_NoActionBar // Check if in dark theme
+        val isDarkMode = context.isNightModeEnabled() // Check if in dark theme
 
         val textColor = if (isDarkMode) Color.parseColor("#909090") else Color.parseColor("#808080")
 
-        val resources = context.resources // Get context resources
+        // Adjust the following code to locate the text color resources in the YouTube app
+        val lightTextColorId = context.getResources().getIdentifier("light_text_color", "color", context.getPackageName())
+        val darkTextColorId = context.getResources().getIdentifier("dark_text_color", "color", context.getPackageName())
 
-        val lightTextId = resources.getIdentifier("lightTextColor", "color", context.packageName) // Get resource ID
-        val darkTextId = resources.getIdentifier("darkTextColor", "color", context.packageName) // Get resource ID
-
-        resources.setColor(lightTextId, textColor) // Set color for light theme text
-        resources.setColor(darkTextId, textColor) // Set color for dark theme text
+        context.getResources().setColor(lightTextColorId, textColor) // Set color for light theme text
+        context.getResources().setColor(darkTextColorId, textColor) // Set color for dark theme text
     }
 }
