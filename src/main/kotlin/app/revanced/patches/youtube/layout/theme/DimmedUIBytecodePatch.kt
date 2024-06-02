@@ -1,5 +1,8 @@
 package app.revanced.patches.dimmedui
 
+import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.data.BytecodeContext
+
 @Patch(
     name = "Dimmed UI",
     description = "Apply to make the texts look darker in the app.",
