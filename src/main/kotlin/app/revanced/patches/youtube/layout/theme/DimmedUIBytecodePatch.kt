@@ -4,6 +4,8 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import android.content.res.Resources
+import android.graphics.Color
 
 @Patch(
     name = "Dimmed UI",
@@ -54,13 +56,16 @@ import app.revanced.patcher.patch.annotation.Patch
 )
 object DimmedUIPatch : BytecodePatch() {
     override fun execute(context: BytecodeContext) {
-        val isDarkMode = context.currentTheme == 1
-        val textColor = if (isDarkMode) 0xFF909090.toInt() else 0xFF808080.toInt()
-        
-        val lightTextColor = context.resources.getColor("lightTextColor")
-        val darkTextColor = context.resources.getColor("darkTextColor")
-        
-        lightTextColor.color = textColor
-        darkTextColor.color = textColor
+        val isDarkMode = context.getThemeId() == android.R.style.Theme_DeviceDefault_NoActionBar // Check if in dark theme
+
+        val textColor = if (isDarkMode) Color.parseColor("#909090") else Color.parseColor("#808080")
+
+        val resources = context.resources // Get context resources
+
+        val lightTextId = resources.getIdentifier("lightTextColor", "color", context.packageName) // Get resource ID
+        val darkTextId = resources.getIdentifier("darkTextColor", "color", context.packageName) // Get resource ID
+
+        resources.setColor(lightTextId, textColor) // Set color for light theme text
+        resources.setColor(darkTextId, textColor) // Set color for dark theme text
     }
 }
