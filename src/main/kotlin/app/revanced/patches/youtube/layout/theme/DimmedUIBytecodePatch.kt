@@ -5,7 +5,6 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 
-
 @Patch(
     name = "Dimmed UI",
     description = "Apply to make the texts look darker in the app.",
@@ -25,6 +24,22 @@ import app.revanced.patcher.patch.annotation.Patch
                 "19.02.39",
                 "19.03.35",
                 "19.03.36",
+                "19.04.36",
+                "19.04.37",
+                "19.05.36",
+                "19.07.39",
+                "19.07.40",
+                "19.08.36",
+                "19.10.37",
+                "19.11.38",
+                "19.11.39",
+                "19.11.43",
+                "19.12.41",
+                "19.13.37",
+                "19.14.40",
+                "19.14.42",
+                "19.14.43",
+                "19.15.36",
                 "19.16.38",
                 "19.16.39",
                 "19.17.41",
@@ -39,10 +54,13 @@ import app.revanced.patcher.patch.annotation.Patch
 )
 object DimmedUIPatch : BytecodePatch() {
     override fun execute(context: BytecodeContext) {
-        val isDarkMode = context.pageStyle == 1
+        val isDarkMode = context.currentTheme == 1
         val textColor = if (isDarkMode) 0xFF909090.toInt() else 0xFF808080.toInt()
         
-        context.resources.getString("lightTextColor").color = textColor
-        context.resources.getString("darkTextColor").color = textColor
+        val lightTextColor = context.resources.getColor("lightTextColor")
+        val darkTextColor = context.resources.getColor("darkTextColor")
+        
+        lightTextColor.color = textColor
+        darkTextColor.color = textColor
     }
 }
