@@ -1065,6 +1065,11 @@
             <string name="revanced_remember_video_quality_wifi">wifi</string>
             <string name="revanced_remember_video_quality_toast">Changed default %1$s quality to: %2$s</string>
         </patch>
+        <patch id="video.speed.button.PlaybackSpeedButtonPatch">
+            <string name="revanced_playback_speed_dialog_button_title">Show speed dialog button</string>
+            <string name="revanced_playback_speed_dialog_button_summary_on">Button is shown</string>
+            <string name="revanced_playback_speed_dialog_button_summary_off">Button is not shown</string>
+        </patch>
         <patch id="video.speed.custom.CustomPlaybackSpeedPatch">
             <string name="revanced_custom_playback_speeds_title">Custom playback speeds</string>
             <string name="revanced_custom_playback_speeds_summary">Add or change the available playback speeds</string>
@@ -1096,7 +1101,7 @@
             <string name="revanced_spoof_client_summary_off">Client is not spoofed\n\nVideo playback may not work</string>
             <string name="revanced_spoof_client_user_dialog_message">Turning off this setting may cause video playback issues.</string>
             <string name="revanced_spoof_client_use_ios_title">Spoof client to iOS</string>
-            <string name="revanced_spoof_client_use_ios_summary_on">Client is currently spoofed to iOS\n\nSide effects include:\n• No HDR video\n• Speed menu is missing\n• Watch history may not work\n• Live streams cannot play as audio only\n• Live streams not available on older devices</string>
+            <string name="revanced_spoof_client_use_ios_summary_on">Client is currently spoofed to iOS\n\nSide effects include:\n• No HDR video\n• Watch history may not work\n• Live streams cannot play as audio only\n• Live streams not available on older devices</string>
             <string name="revanced_spoof_client_use_ios_summary_off">Client is currently spoofed to Android VR\n\nSide effects include:\n• No HDR video\n• Kids videos do not playback\n• Paused videos can randomly resume</string>
             <string name="revanced_spoof_client_storyboard_timeout">Spoof client thumbnails not available (API timed out)</string>
             <string name="revanced_spoof_client_storyboard_io_exception">Spoof client thumbnails temporarily not available: %s</string>
